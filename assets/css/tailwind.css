@@ -1,0 +1,347 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  html {
+    @apply scroll-smooth antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  body {
+    @apply min-h-screen transition-colors duration-300;
+  }
+
+  /* Light Theme Base */
+  :root {
+    --color-bg: #fafafa;
+    --color-bg-secondary: #f4f4f5;
+    --color-bg-tertiary: #e4e4e7;
+    --color-text: #18181b;
+    --color-text-secondary: #52525b;
+    --color-text-muted: #a1a1aa;
+    --color-border: #e4e4e7;
+    --color-accent: #2563eb;
+    --color-accent-hover: #1d4ed8;
+  }
+
+  /* Dark Theme */
+  .dark {
+    --color-bg: #0a0a0b;
+    --color-bg-secondary: #18181b;
+    --color-bg-tertiary: #27272a;
+    --color-text: #fafafa;
+    --color-text-secondary: #d4d4d8;
+    --color-text-muted: #71717a;
+    --color-border: #3f3f46;
+    --color-accent: #3b82f6;
+    --color-accent-hover: #60a5fa;
+  }
+
+  /* Hero Theme */
+  .hero {
+    --color-bg: #010a13;
+    --color-bg-secondary: #0a1428;
+    --color-bg-tertiary: #1e2328;
+    --color-text: #f0e6d2;
+    --color-text-secondary: #c8aa6e;
+    --color-text-muted: #785a28;
+    --color-border: #463714;
+    --color-accent: #c89b3c;
+    --color-accent-hover: #f0e6d2;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-blue-500/30;
+  }
+
+  .dark ::selection {
+    @apply bg-blue-400/30;
+  }
+
+  .hero ::selection {
+    @apply bg-hero-gold/30;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg-secondary);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    @apply rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-muted);
+  }
+
+  /* Focus styles */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-blue-500;
+  }
+
+  .hero :focus-visible {
+    @apply outline-hero-gold;
+  }
+}
+
+@layer components {
+  /* Theme aware background */
+  .bg-theme {
+    background-color: var(--color-bg);
+  }
+
+  .bg-theme-secondary {
+    background-color: var(--color-bg-secondary);
+  }
+
+  .bg-theme-tertiary {
+    background-color: var(--color-bg-tertiary);
+  }
+
+  /* Theme aware text */
+  .text-theme {
+    color: var(--color-text);
+  }
+
+  .text-theme-secondary {
+    color: var(--color-text-secondary);
+  }
+
+  .text-theme-muted {
+    color: var(--color-text-muted);
+  }
+
+  /* Theme aware border */
+  .border-theme {
+    border-color: var(--color-border);
+  }
+
+  /* Theme aware accent */
+  .text-accent {
+    color: var(--color-accent);
+  }
+
+  .bg-accent {
+    background-color: var(--color-accent);
+  }
+
+  .border-accent {
+    border-color: var(--color-accent);
+  }
+
+  /* Card styles */
+  .card {
+    @apply rounded-2xl border transition-all duration-300;
+    background-color: var(--color-bg-secondary);
+    border-color: var(--color-border);
+  }
+
+  .card:hover {
+    @apply shadow-lg;
+  }
+
+  .hero .card {
+    @apply shadow-hero-card border-hero-gold-dark/30;
+    background: linear-gradient(180deg, rgba(10, 20, 40, 0.95) 0%, rgba(1, 10, 19, 0.98) 100%);
+  }
+
+  .hero .card:hover {
+    @apply shadow-hero-gold border-hero-gold/50;
+  }
+
+  /* Hero gold border effect */
+  .hero-border {
+    @apply relative;
+  }
+
+  .hero-border::before {
+    content: '';
+    @apply absolute inset-0 rounded-2xl pointer-events-none;
+    background: linear-gradient(135deg, transparent 0%, rgba(200, 155, 60, 0.3) 50%, transparent 100%);
+    background-size: 200% 200%;
+    animation: borderFlow 3s linear infinite;
+  }
+
+  /* Button styles */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-200;
+    @apply focus-visible:ring-2 focus-visible:ring-offset-2;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply bg-accent text-white hover:opacity-90;
+    background-color: var(--color-accent);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-accent-hover);
+  }
+
+  .hero .btn-primary {
+    @apply bg-gradient-to-r from-hero-gold-dark via-hero-gold to-hero-gold-dark text-hero-bg;
+    @apply hover:shadow-hero-gold;
+  }
+
+  .btn-secondary {
+    @apply border-2;
+    border-color: var(--color-border);
+    color: var(--color-text);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .hero .btn-secondary {
+    @apply border-hero-gold/50 text-hero-gold hover:border-hero-gold hover:shadow-hero-gold/30;
+  }
+
+  /* Input styles */
+  .input {
+    @apply w-full px-4 py-3 rounded-xl border transition-all duration-200;
+    background-color: var(--color-bg-secondary);
+    border-color: var(--color-border);
+    color: var(--color-text);
+  }
+
+  .input:focus {
+    border-color: var(--color-accent);
+    @apply ring-2 ring-offset-0;
+    --tw-ring-color: var(--color-accent);
+    --tw-ring-opacity: 0.2;
+  }
+
+  .hero .input {
+    @apply bg-hero-bg-secondary border-hero-gold-dark/50;
+  }
+
+  .hero .input:focus {
+    @apply border-hero-gold ring-hero-gold/30;
+  }
+
+  /* Badge styles */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .badge-primary {
+    background-color: var(--color-accent);
+    @apply text-white;
+  }
+
+  .badge-secondary {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-text-secondary);
+  }
+
+  .hero .badge-primary {
+    @apply bg-hero-gold text-hero-bg;
+  }
+
+  .hero .badge-secondary {
+    @apply bg-hero-bg-tertiary text-hero-gold;
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    @apply h-2 rounded-full overflow-hidden;
+    background-color: var(--color-bg-tertiary);
+  }
+
+  .progress-bar-fill {
+    @apply h-full rounded-full transition-all duration-500;
+    background-color: var(--color-accent);
+  }
+
+  .hero .progress-bar {
+    @apply bg-hero-bg-tertiary;
+  }
+
+  .hero .progress-bar-fill {
+    @apply bg-gradient-to-r from-hero-gold-dark via-hero-gold to-hero-magic;
+  }
+}
+
+@layer utilities {
+  /* Text gradient */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600;
+  }
+
+  .dark .text-gradient {
+    @apply from-blue-400 to-purple-500;
+  }
+
+  .hero .text-gradient {
+    @apply from-hero-gold-dark via-hero-gold to-hero-gold-light;
+  }
+
+  /* Glass effect */
+  .glass {
+    @apply backdrop-blur-lg bg-white/80 border border-white/20;
+  }
+
+  .dark .glass {
+    @apply bg-zinc-900/80 border-zinc-700/30;
+  }
+
+  .hero .glass {
+    @apply bg-hero-bg-secondary/90 border-hero-gold/10;
+  }
+
+  /* Glow effects */
+  .glow {
+    @apply shadow-glow;
+  }
+
+  .hero .glow {
+    @apply shadow-hero-gold;
+  }
+
+  /* Hero specific utilities */
+  .hero-glow {
+    box-shadow: 0 0 20px rgba(200, 155, 60, 0.5), 0 0 40px rgba(200, 155, 60, 0.2);
+  }
+
+  .hero-magic-glow {
+    box-shadow: 0 0 20px rgba(10, 200, 185, 0.5), 0 0 40px rgba(10, 200, 185, 0.2);
+  }
+
+  /* Hide scrollbar */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Safe area padding for mobile */
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0);
+  }
+}

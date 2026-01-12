@@ -1,0 +1,312 @@
+/* Page Transitions */
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* Layout transitions */
+.layout-enter-active,
+.layout-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.layout-enter-from,
+.layout-leave-to {
+  opacity: 0;
+}
+
+/* Fade transitions */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Slide transitions */
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-enter-from {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.slide-leave-to {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+/* Scale transitions */
+.scale-enter-active,
+.scale-leave-active {
+  transition: all 0.2s ease-out;
+}
+
+.scale-enter-from,
+.scale-leave-to {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+/* Staggered animations for lists */
+.stagger-item {
+  opacity: 0;
+  animation: staggerFadeIn 0.5s ease-out forwards;
+}
+
+.stagger-item:nth-child(1) { animation-delay: 0.1s; }
+.stagger-item:nth-child(2) { animation-delay: 0.2s; }
+.stagger-item:nth-child(3) { animation-delay: 0.3s; }
+.stagger-item:nth-child(4) { animation-delay: 0.4s; }
+.stagger-item:nth-child(5) { animation-delay: 0.5s; }
+.stagger-item:nth-child(6) { animation-delay: 0.6s; }
+.stagger-item:nth-child(7) { animation-delay: 0.7s; }
+.stagger-item:nth-child(8) { animation-delay: 0.8s; }
+.stagger-item:nth-child(9) { animation-delay: 0.9s; }
+.stagger-item:nth-child(10) { animation-delay: 1s; }
+
+@keyframes staggerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulse animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Hero specific animations */
+@keyframes hero-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(200, 155, 60, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(200, 155, 60, 0.7);
+  }
+}
+
+.hero .animate-pulse-glow {
+  animation: hero-pulse 2s ease-in-out infinite;
+}
+
+/* Magic orb animation */
+@keyframes magic-orb {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+.animate-magic-orb {
+  animation: magic-orb 3s ease-in-out infinite;
+}
+
+/* Typing cursor animation */
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Spin slow */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 10s linear infinite;
+}
+
+/* Bounce subtle */
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+/* Wave animation for backgrounds */
+@keyframes wave {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-wave {
+  background-size: 200% 200%;
+  animation: wave 8s ease-in-out infinite;
+}
+
+/* Gradient text animation */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Reveal animation */
+@keyframes reveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.animate-reveal {
+  animation: reveal 0.8s ease-out forwards;
+}
+
+/* Counter animation helper */
+.animate-count {
+  transition: all 0.5s ease-out;
+}
+
+/* Mobile tab bar animations */
+@keyframes tab-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.tab-active-bounce {
+  animation: tab-bounce 0.3s ease-out;
+}
+
+/* Skeleton loading */
+@keyframes skeleton {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-bg-secondary) 25%,
+    var(--color-bg-tertiary) 50%,
+    var(--color-bg-secondary) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton 1.5s ease-in-out infinite;
+}
+
+.hero .skeleton {
+  background: linear-gradient(
+    90deg,
+    #0a1428 25%,
+    #1e2328 50%,
+    #0a1428 75%
+  );
+  background-size: 200% 100%;
+}
+
+/* Ripple effect */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: currentColor;
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ripple:active::after {
+  animation: ripple 0.6s ease-out;
+}
